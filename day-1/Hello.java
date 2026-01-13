@@ -1,6 +1,24 @@
+class Calculator{
+    static int a = 10;
+    public static void main(String args[]){
+        System.out.println("Welcome to my calculator");
+        System.out.print(a);
+    }
+    public int add(int a, int b){
+        return a+b;
+    }
+}
+
 public class Hello{
     public static void main(String args[]){
-        System.out.println("Hello World");
+        int a = 10;
+        int b = 23;
+
+        Calculator calc = new Calculator();
+
+        int result = calc.add(a, b);
+
+        System.out.print(result);
     }
 }
 
