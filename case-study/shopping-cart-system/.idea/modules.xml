@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/java-flexi.iml" filepath="$PROJECT_DIR$/java-flexi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shopping-cart-system.iml" filepath="$PROJECT_DIR$/shopping-cart-system.iml" />
     </modules>
   </component>
 </project>
