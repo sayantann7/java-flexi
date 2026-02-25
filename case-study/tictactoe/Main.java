@@ -55,17 +55,7 @@ public class Main{
     }
 
     static String[][] fillGameBoard(String[][] gameBoard, int num, String sign){
-        for(int i = 0; i<3; i++){
-            for(int j = 0;j<3; j++){
-                try{
-                    if(Integer.parseInt(gameBoard[i][j])==num){
-                        gameBoard[i][j] = sign;
-                    }
-                }catch(NumberFormatException e){
-                    continue;
-                }
-            }
-        }
+        gameBoard[(num-1)/3][(num-1)%3] = sign;
         return gameBoard;
     }
 
