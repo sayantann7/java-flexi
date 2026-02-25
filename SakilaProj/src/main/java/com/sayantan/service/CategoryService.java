@@ -1,5 +1,6 @@
 package com.sayantan.service;
 
+import com.sayantan.pojo.Actor;
 import com.sayantan.pojo.Category;
 import com.sayantan.repository.CategoryRepo;
 
@@ -15,6 +16,10 @@ public class CategoryService {
 
     public List<Category> fetchAllCategories(){
         return categoryRepo.findAll();
+    }
+    
+    public List<Category> fetchCategory(String name){
+        return categoryRepo.find(name);
     }
 
 }

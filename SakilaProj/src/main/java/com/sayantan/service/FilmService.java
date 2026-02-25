@@ -16,5 +16,9 @@ public class FilmService {
     public List<MyFilm> fetchAllFilms(){
         return filmRepo.findAll();
     }
+    
+    public List<MyFilm> fetchFilm(String name){
+        return filmRepo.find(name);
+    }
 
 }

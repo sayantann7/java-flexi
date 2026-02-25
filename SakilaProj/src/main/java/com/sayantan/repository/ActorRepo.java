@@ -43,5 +43,25 @@ public class ActorRepo {
         }
         return actors;
     }
+	
+	public List<Actor> find(String name) {
+		Connection con = database.init();
+		List<Actor> actors = new ArrayList<Actor>();
+		try {
+			Statement st = con.createStatement();
+			String query = "select * from actor where first_name like '%"+name+"%' or last_name like '%"+name+"%'";
+			ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                Actor a = new Actor();
+                a.setActor_id(rs.getInt("actor_id"));
+                a.setFirst_name(rs.getString("first_name"));
+                a.setLast_name(rs.getString("last_name"));
+                actors.add(a);
+            }
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return actors;
+	}
 
 }

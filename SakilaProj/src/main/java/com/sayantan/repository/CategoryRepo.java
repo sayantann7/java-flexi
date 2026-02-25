@@ -1,5 +1,6 @@
 package com.sayantan.repository;
 
+import com.sayantan.pojo.Actor;
 import com.sayantan.pojo.Category;
 import com.sayantan.pojo.MyFilm;
 
@@ -44,5 +45,24 @@ public class CategoryRepo {
         }
         return categories;
     }
+	
+	public List<Category> find(String name) {
+		Connection con = database.init();
+		List<Category> categories = new ArrayList<Category>();
+		try {
+			Statement st = con.createStatement();
+			String query = "select * from category where name like '%"+name+"%'";
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next()){
+            	Category c = new Category();
+            	c.setCategory_id(rs.getInt("category_id"));
+            	c.setName(rs.getString("name"));
+            	categories.add(c);
+            }
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return categories;
+	}
 
 }

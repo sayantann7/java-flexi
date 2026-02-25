@@ -63,4 +63,25 @@ public class MainController {
         mv.setViewName("categories.jsp");
         return mv;
     }
+    
+    @RequestMapping("/searchActor")
+    public ModelAndView searchActor(String name, ModelAndView mv){
+    	mv.addObject("actors",actorService.fetchActor(name));
+        mv.setViewName("actors.jsp");
+        return mv;
+    }
+    
+    @RequestMapping("/searchFilm")
+    public ModelAndView searchFilm(String name, ModelAndView mv){
+    	mv.addObject("films",filmService.fetchFilm(name));
+        mv.setViewName("films.jsp");
+        return mv;
+    }
+    
+    @RequestMapping("/searchCategory")
+    public ModelAndView searchCategory(String name, ModelAndView mv){
+    	mv.addObject("categories",categoryService.fetchCategory(name));
+        mv.setViewName("categories.jsp");
+        return mv;
+    }
 }

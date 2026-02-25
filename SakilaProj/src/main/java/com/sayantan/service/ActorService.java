@@ -15,5 +15,10 @@ public class ActorService {
     public List<Actor> fetchAllActors(){
         return actorRepo.findAll();
     }
+    
+    public List<Actor> fetchActor(String name){
+    	String upperName = name.toUpperCase();
+        return actorRepo.find(upperName);
+    }
 
 }

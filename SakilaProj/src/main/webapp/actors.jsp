@@ -4,7 +4,6 @@
 <html>
 <head>
     <title>Actors</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
@@ -16,10 +15,20 @@
             color: #2d2d2d;
         }
 
-        h1 {
-            font-weight: 500;
-            margin-bottom: 30px;
+        h1 { font-weight: 500; margin-bottom: 20px; }
+
+        .search-box { margin-bottom: 30px; }
+
+        input {
+            width: 320px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            outline: none;
         }
+
+        input:focus { border-color: #999; }
 
         .grid {
             display: grid;
@@ -35,25 +44,19 @@
             transition: 0.2s ease;
         }
 
+        .card.hidden { display: none; }
+
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.08);
         }
 
-        .name {
-            font-weight: 500;
-            font-size: 16px;
-        }
-
-        .id {
-            font-size: 13px;
-            color: #777;
-            margin-top: 6px;
-        }
+        .name { font-weight: 500; }
+        .id { font-size: 13px; color: #777; margin-top: 6px; }
 
         .back {
             display: inline-block;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-decoration: none;
             font-size: 14px;
             color: #555;
@@ -66,15 +69,17 @@
 <a href="/" class="back">Back</a>
 <h1>Actors</h1>
 
+<div class="search-box">
+    <form action="searchActor">
+    	<input type="text" name="name" id="searchInput" placeholder="Search actors...">
+    </form>
+</div>
+
 <div class="grid">
     <c:forEach var="actor" items="${actors}">
         <div class="card">
-            <div class="name">
-                ${actor.first_name} ${actor.last_name}
-            </div>
-            <div class="id">
-                Actor ID: ${actor.actor_id}
-            </div>
+            <div class="name">${actor.first_name} ${actor.last_name}</div>
+            <div class="id">Actor ID: ${actor.actor_id}</div>
         </div>
     </c:forEach>
 </div>

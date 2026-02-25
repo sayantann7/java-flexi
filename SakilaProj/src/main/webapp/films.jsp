@@ -16,10 +16,20 @@
             color: #2d2d2d;
         }
 
-        h1 {
-            font-weight: 500;
-            margin-bottom: 30px;
+        h1 { font-weight: 500; margin-bottom: 20px; }
+
+        .search-box { margin-bottom: 30px; }
+
+        input {
+            width: 320px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            outline: none;
         }
+
+        input:focus { border-color: #999; }
 
         .film-list {
             display: flex;
@@ -35,29 +45,16 @@
             transition: 0.2s ease;
         }
 
+        .card.hidden { display: none; }
+
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.08);
         }
 
-        .title {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .meta {
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 12px;
-        }
-
-        .desc {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #555;
-        }
-
+        .title { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+        .meta { font-size: 14px; color: #777; margin-bottom: 10px; }
+        .desc { font-size: 14px; line-height: 1.6; color: #555; }
         .badge {
             margin-top: 12px;
             display: inline-block;
@@ -69,7 +66,7 @@
 
         .back {
             display: inline-block;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-decoration: none;
             font-size: 14px;
             color: #555;
@@ -81,6 +78,12 @@
 
 <a href="/" class="back">Back</a>
 <h1>Films</h1>
+
+<div class="search-box">
+    <form action="searchFilm">
+    	<input type="text" name="name" id="searchInput" placeholder="Search films...">
+    </form>
+</div>
 
 <div class="film-list">
     <c:forEach var="film" items="${films}">

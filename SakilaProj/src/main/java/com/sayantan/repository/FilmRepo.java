@@ -1,5 +1,6 @@
 package com.sayantan.repository;
 
+import com.sayantan.pojo.Actor;
 import com.sayantan.pojo.MyFilm;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,28 @@ public class FilmRepo {
         }
         return films;
     }
+	
+	public List<MyFilm> find(String name) {
+		Connection con = database.init();
+		List<MyFilm> films = new ArrayList<MyFilm>();
+		try {
+			Statement st = con.createStatement();
+			String query = "select * from myfilm where title like '%"+name+"%' or description like '%"+name+"%'";
+			ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+            	MyFilm f = new MyFilm();
+            	f.setFilm_id(rs.getInt("film_id"));
+            	f.setTitle(rs.getString("title"));
+            	f.setDescription(rs.getString("description"));
+            	f.setLength(rs.getInt("length"));
+            	f.setRating(rs.getString("rating"));
+            	f.setRelease_year(rs.getString("release_year"));
+                films.add(f);
+            }
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return films;
+	}
 
 }
