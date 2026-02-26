@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,6 +63,40 @@ public class ActorRepo {
 			System.out.println(e.getMessage());
 		}
 		return actors;
+	}
+	
+	public int generateID() {
+		Connection con = database.init();
+		int lastId = 0;
+		try {
+			Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			String query = "select * from actor";
+			ResultSet rs = st.executeQuery(query);
+			boolean success = rs.last(); 
+			if (success) {
+			    lastId = rs.getInt("actor_id");
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return (lastId+1);
+	}
+	
+	public void add(String first_name, String last_name) {
+		Connection con = database.init();
+		try {
+			con.setAutoCommit(false);
+			String sql = "insert into actor (actor_id, first_name, last_name) values (?,?,?) ";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, generateID());
+			pst.setString(2, first_name);
+			pst.setString(3, last_name);
+			int rowsAffected = pst.executeUpdate();
+			con.commit();
+			System.out.println("Inserted Actor : rows affected : "+rowsAffected);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

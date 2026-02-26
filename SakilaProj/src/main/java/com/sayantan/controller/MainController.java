@@ -84,4 +84,32 @@ public class MainController {
         mv.setViewName("categories.jsp");
         return mv;
     }
+    
+    @RequestMapping("/createActor")
+    public ModelAndView createActor(String first_name, String last_name ,ModelAndView mv){
+    	actorService.createActor(first_name, last_name);
+        mv.setViewName("actors.jsp");
+        return mv;
+    }
+    
+    @RequestMapping("/createFilm")
+    public ModelAndView createFilm(String title, String description, String release_year, int length, String rating, int categoryId, ModelAndView mv){
+    	filmService.createFilm(title, description, release_year, length, rating, categoryId);
+        mv.setViewName("films.jsp");
+        return mv;
+    }
+    
+    @RequestMapping("/createCategory")
+    public ModelAndView createCategory(String name, ModelAndView mv){
+    	categoryService.createCategory(name);
+        mv.setViewName("categories.jsp");
+        return mv;
+    }
+    
+    @RequestMapping("/filterFilmByCategory")
+    public ModelAndView filterFilmByCategory(int categoryId, ModelAndView mv){
+    	mv.addObject("films",filmService.filterFilmByCategory(categoryId));
+        mv.setViewName("films.jsp");
+        return mv;
+    }
 }

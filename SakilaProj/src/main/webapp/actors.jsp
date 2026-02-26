@@ -26,9 +26,34 @@
             border: 1px solid #ddd;
             font-size: 14px;
             outline: none;
+            margin-bottom: 10px;
         }
 
         input:focus { border-color: #999; }
+
+        button {
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+            background: #2d2d2d;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+        .form-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            width: 350px;
+        }
 
         .grid {
             display: grid;
@@ -69,12 +94,29 @@
 <a href="/" class="back">Back</a>
 <h1>Actors</h1>
 
+<!-- Search -->
 <div class="search-box">
     <form action="searchActor">
-    	<input type="text" name="name" id="searchInput" placeholder="Search actors...">
+        <input type="text" name="name" id="searchInput" placeholder="Search actors...">
     </form>
 </div>
 
+<!-- Create Actor Form -->
+<div class="form-card">
+    <form action="createActor">
+        <div>
+            <input type="text" name="first_name" placeholder="First Name" required>
+        </div>
+        <div>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+        </div>
+        <div>
+            <button type="submit">Add Actor</button>
+        </div>
+    </form>
+</div>
+
+<!-- Actors Grid -->
 <div class="grid">
     <c:forEach var="actor" items="${actors}">
         <div class="card">

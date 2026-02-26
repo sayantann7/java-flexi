@@ -27,9 +27,34 @@
             border: 1px solid #ddd;
             font-size: 14px;
             outline: none;
+            margin-bottom: 10px;
         }
 
         input:focus { border-color: #999; }
+
+        button {
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+            background: #2d2d2d;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+        .form-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            width: 350px;
+        }
 
         .grid {
             display: grid;
@@ -45,8 +70,6 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             transition: 0.2s ease;
         }
-
-        .card.hidden { display: none; }
 
         .card:hover {
             transform: translateY(-4px);
@@ -71,12 +94,22 @@
 <a href="/" class="back">Back</a>
 <h1>Categories</h1>
 
+<!-- Search -->
 <div class="search-box">
     <form action="searchCategory">
-    	<input type="text" name="name" id="searchInput" placeholder="Search categories...">
+        <input type="text" name="name" id="searchInput" placeholder="Search categories...">
     </form>
 </div>
 
+<!-- Create Category Form -->
+<div class="form-card">
+    <form action="createCategory" method="post">
+        <input type="text" name="name" placeholder="Category Name" required>
+        <button type="submit">Add Category</button>
+    </form>
+</div>
+
+<!-- Category Grid -->
 <div class="grid">
     <c:forEach var="category" items="${categories}">
         <div class="card">

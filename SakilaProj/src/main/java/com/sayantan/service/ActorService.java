@@ -20,5 +20,9 @@ public class ActorService {
     	String upperName = name.toUpperCase();
         return actorRepo.find(upperName);
     }
+    
+    public void createActor(String first_name, String last_name) {
+    	actorRepo.add(first_name.toUpperCase(), last_name.toUpperCase());
+    }
 
 }

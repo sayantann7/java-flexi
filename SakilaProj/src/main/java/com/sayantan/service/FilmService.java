@@ -20,5 +20,13 @@ public class FilmService {
     public List<MyFilm> fetchFilm(String name){
         return filmRepo.find(name);
     }
+    
+    public void createFilm(String title, String description, String release_year, int length, String rating, int categoryId) {
+    	filmRepo.add(title, description, release_year, length, rating, categoryId);
+    }
+    
+    public List<MyFilm> filterFilmByCategory(int categoryId){
+    	return filmRepo.filterByCategory(categoryId);
+    }
 
 }

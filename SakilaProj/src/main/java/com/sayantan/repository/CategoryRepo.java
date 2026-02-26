@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -63,6 +64,39 @@ public class CategoryRepo {
 			System.out.println(e.getMessage());
 		}
 		return categories;
+	}
+	
+	public int generateID() {
+		Connection con = database.init();
+		int lastId = 0;
+		try {
+			Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			String query = "select * from category";
+			ResultSet rs = st.executeQuery(query);
+			boolean success = rs.last(); 
+			if (success) {
+			    lastId = rs.getInt("category_id");
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return (lastId+1);
+	}
+	
+	public void add(String name) {
+		Connection con = database.init();
+		try {
+			con.setAutoCommit(false);
+			String sql = "insert into category (category_id, name) values (?,?) ";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, generateID());
+			pst.setString(2, name);
+			int rowsAffected = pst.executeUpdate();
+			con.commit();
+			System.out.println("Inserted Category : rows affected : "+rowsAffected);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }
