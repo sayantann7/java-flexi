@@ -1,0 +1,4 @@
+interface GPS {
+    void getCoordinates();
+    
+}
